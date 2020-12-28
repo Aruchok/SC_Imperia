@@ -1,0 +1,27 @@
+﻿@model SC_Imperia.Models.Senior_staff
+
+@{
+    ViewBag.Title = "Details_SS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 align="center">Delails</h2>
+<table align="center" class="table-bordered table-striped table-condensed">
+    <tr>
+        <th><p3 align="center">Фамилия</p3></th>
+
+        <th><p3 align="center">  Имя  </p3></th>
+
+        <th><p3 align="center">Должность</p3></th>
+    </tr>
+
+    <tr>
+        <td align="center">@Model.fname</td>
+        <td align="center">@Model.lname</td>
+        <td align="center">@Model.Position.pos</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("","Home")">
+    <img src="@Url.Content("~/Content/Back.png")" alt="Home" />
+</a>

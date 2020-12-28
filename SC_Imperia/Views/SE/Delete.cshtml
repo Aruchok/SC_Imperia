@@ -1,0 +1,33 @@
+﻿@model SC_Imperia.Models.Sports_equipment
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Вы уверены, что хотите удалить ответственного?</h3>
+<div>
+    <h4>
+        Sports equipment
+    </h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <input type="image" name="image" src="~/Content/Delete.png" width="32" />
+        </div>
+        <div>
+            <a href="@Url.Action("","SE")">
+                <img src="@Url.Content("~/Content/Back.png")" alt="Home" />
+            </a>
+        </div>
+    }
+
+
+</div>

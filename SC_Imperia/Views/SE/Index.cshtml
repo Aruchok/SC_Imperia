@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SC_Imperia.Models.Sports_equipment>
+
+@{
+    ViewBag.Title = "Sports equipment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .center {
+        width: 100px; /* Ширина элемента в пикселах */
+        padding: 10px; /* Поля вокруг текста */
+        margin: auto; /* Выравниваем по центру */
+    }
+</style>
+
+<h2 align="center">Sports equipment</h2>
+
+<table align="center" class="table-bordered table-striped table-condensed">
+    <tr>
+        <th>
+            @Html.Label("Quantity")      
+        </th>
+        <th>
+            @Html.Label("Title")
+        </th>
+        <th>
+            @Html.Label("Last name staff")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Senior_staff.lname)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "SE", new { id = item.ID })">
+                <img src="@Url.Content("~/Content/Edit.png")" />
+            </a>
+            <a href="@Url.Action("Details", "SE", new { id = item.ID })">
+                <img src="@Url.Content("~/Content/Details.png")" />
+            </a>
+            <a href="@Url.Action("Delete", "SE", new { id = item.ID })">
+                <img src="@Url.Content("~/Content/Delete.png")" />
+            </a>
+        </td>
+    </tr>
+    }
+</table>
+
+<div class="center">
+    <a href="@Url.Action("Create", "SE")">
+        <img src="@Url.Content("~/Content/New.png")" />
+    </a>
+</div>

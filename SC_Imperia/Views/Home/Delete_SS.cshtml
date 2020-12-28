@@ -1,0 +1,27 @@
+﻿@model SC_Imperia.Models.Senior_staff
+
+@{
+    ViewBag.Title = "Delete_SS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Вы уверены, что хотите удалить этого человека?</h3>
+<div>
+    <h4>Senior staff</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <input type="image" name="image" src="~/Content/Delete.png" width="32" />
+        </div>
+        <a href="@Url.Action("","Home")">
+            <img src="@Url.Content("~/Content/Back.png")" alt="Home" />
+        </a>
+    }
+</div>

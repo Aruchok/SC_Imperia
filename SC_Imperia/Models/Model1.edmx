@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище IMPERIAModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="type_subID" Type="int" />
+          <Property Name="type_sports_hallID" Type="int" />
+          <Property Name="senior_staffID" Type="int" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pos" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Senior_staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="positionID" Type="int" />
+        </EntityType>
+        <EntityType Name="Sports_equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="senior_staffID" Type="int" />
+        </EntityType>
+        <EntityType Name="Supplier_sports_nutrition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="quantity" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="nvarchar" MaxLength="50" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" />
+          <Property Name="senior_staffID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type_sports_hall">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Type_sub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Client_Client">
+          <End Role="Type_sports_hall" Type="Self.Type_sports_hall" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_sports_hall">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="type_sports_hallID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Senior_staff">
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Senior_staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="senior_staffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Type_sub">
+          <End Role="Type_sub" Type="Self.Type_sub" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_sub">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="type_subID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Senior_staff_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Senior_staff">
+              <PropertyRef Name="positionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sports_equipment_Senior_staff">
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="0..1" />
+          <End Role="Sports_equipment" Type="Self.Sports_equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Senior_staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sports_equipment">
+              <PropertyRef Name="senior_staffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_sports_nutrition_Senior_staff">
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="0..1" />
+          <End Role="Supplier_sports_nutrition" Type="Self.Supplier_sports_nutrition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Senior_staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Supplier_sports_nutrition">
+              <PropertyRef Name="senior_staffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище IMPERIAModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Senior_staff" EntityType="Self.Senior_staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sports_equipment" EntityType="Self.Sports_equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier_sports_nutrition" EntityType="Self.Supplier_sports_nutrition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_sports_hall" EntityType="Self.Type_sports_hall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_sub" EntityType="Self.Type_sub" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_Client" Association="Self.FK_Client_Client">
+            <End Role="Type_sports_hall" EntitySet="Type_sports_hall" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Senior_staff" Association="Self.FK_Client_Senior_staff">
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Type_sub" Association="Self.FK_Client_Type_sub">
+            <End Role="Type_sub" EntitySet="Type_sub" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Senior_staff_Position" Association="Self.FK_Senior_staff_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sports_equipment_Senior_staff" Association="Self.FK_Sports_equipment_Senior_staff">
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+            <End Role="Sports_equipment" EntitySet="Sports_equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_sports_nutrition_Senior_staff" Association="Self.FK_Supplier_sports_nutrition_Senior_staff">
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+            <End Role="Supplier_sports_nutrition" EntitySet="Supplier_sports_nutrition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IMPERIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type_subID" Type="Int32" />
+          <Property Name="type_sports_hallID" Type="Int32" />
+          <Property Name="senior_staffID" Type="Int32" />
+          <NavigationProperty Name="Type_sports_hall" Relationship="Self.FK_Client_Client" FromRole="Client" ToRole="Type_sports_hall" />
+          <NavigationProperty Name="Senior_staff" Relationship="Self.FK_Client_Senior_staff" FromRole="Client" ToRole="Senior_staff" />
+          <NavigationProperty Name="Type_sub" Relationship="Self.FK_Client_Type_sub" FromRole="Client" ToRole="Type_sub" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Senior_staff" Relationship="Self.FK_Senior_staff_Position" FromRole="Position" ToRole="Senior_staff" />
+        </EntityType>
+        <EntityType Name="Senior_staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="positionID" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Senior_staff" FromRole="Senior_staff" ToRole="Client" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_Senior_staff_Position" FromRole="Senior_staff" ToRole="Position" />
+          <NavigationProperty Name="Sports_equipment" Relationship="Self.FK_Sports_equipment_Senior_staff" FromRole="Senior_staff" ToRole="Sports_equipment" />
+          <NavigationProperty Name="Supplier_sports_nutrition" Relationship="Self.FK_Supplier_sports_nutrition_Senior_staff" FromRole="Senior_staff" ToRole="Supplier_sports_nutrition" />
+        </EntityType>
+        <EntityType Name="Sports_equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="senior_staffID" Type="Int32" />
+          <NavigationProperty Name="Senior_staff" Relationship="Self.FK_Sports_equipment_Senior_staff" FromRole="Sports_equipment" ToRole="Senior_staff" />
+        </EntityType>
+        <EntityType Name="Supplier_sports_nutrition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="senior_staffID" Type="Int32" />
+          <NavigationProperty Name="Senior_staff" Relationship="Self.FK_Supplier_sports_nutrition_Senior_staff" FromRole="Supplier_sports_nutrition" ToRole="Senior_staff" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type_sports_hall">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Client" FromRole="Type_sports_hall" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Type_sub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Type_sub" FromRole="Type_sub" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_Client_Client">
+          <End Role="Type_sports_hall" Type="Self.Type_sports_hall" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_sports_hall">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="type_sports_hallID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Senior_staff">
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Senior_staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="senior_staffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Type_sub">
+          <End Role="Type_sub" Type="Self.Type_sub" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_sub">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="type_subID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Senior_staff_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Senior_staff">
+              <PropertyRef Name="positionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sports_equipment_Senior_staff">
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="0..1" />
+          <End Role="Sports_equipment" Type="Self.Sports_equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Senior_staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sports_equipment">
+              <PropertyRef Name="senior_staffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_sports_nutrition_Senior_staff">
+          <End Role="Senior_staff" Type="Self.Senior_staff" Multiplicity="0..1" />
+          <End Role="Supplier_sports_nutrition" Type="Self.Supplier_sports_nutrition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Senior_staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Supplier_sports_nutrition">
+              <PropertyRef Name="senior_staffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IMPERIA_DB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Position" EntityType="Self.Position" />
+          <EntitySet Name="Senior_staff" EntityType="Self.Senior_staff" />
+          <EntitySet Name="Sports_equipment" EntityType="Self.Sports_equipment" />
+          <EntitySet Name="Supplier_sports_nutrition" EntityType="Self.Supplier_sports_nutrition" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Type_sports_hall" EntityType="Self.Type_sports_hall" />
+          <EntitySet Name="Type_sub" EntityType="Self.Type_sub" />
+          <AssociationSet Name="FK_Client_Client" Association="Self.FK_Client_Client">
+            <End Role="Type_sports_hall" EntitySet="Type_sports_hall" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Senior_staff" Association="Self.FK_Client_Senior_staff">
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Type_sub" Association="Self.FK_Client_Type_sub">
+            <End Role="Type_sub" EntitySet="Type_sub" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Senior_staff_Position" Association="Self.FK_Senior_staff_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sports_equipment_Senior_staff" Association="Self.FK_Sports_equipment_Senior_staff">
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+            <End Role="Sports_equipment" EntitySet="Sports_equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_sports_nutrition_Senior_staff" Association="Self.FK_Supplier_sports_nutrition_Senior_staff">
+            <End Role="Senior_staff" EntitySet="Senior_staff" />
+            <End Role="Supplier_sports_nutrition" EntitySet="Supplier_sports_nutrition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище IMPERIAModelContainer" CdmEntityContainer="IMPERIA_DB">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="IMPERIAModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="type_subID" ColumnName="type_subID" />
+                <ScalarProperty Name="type_sports_hallID" ColumnName="type_sports_hallID" />
+                <ScalarProperty Name="senior_staffID" ColumnName="senior_staffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="IMPERIAModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="pos" ColumnName="pos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Senior_staff">
+            <EntityTypeMapping TypeName="IMPERIAModel.Senior_staff">
+              <MappingFragment StoreEntitySet="Senior_staff">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="positionID" ColumnName="positionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sports_equipment">
+            <EntityTypeMapping TypeName="IMPERIAModel.Sports_equipment">
+              <MappingFragment StoreEntitySet="Sports_equipment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="senior_staffID" ColumnName="senior_staffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier_sports_nutrition">
+            <EntityTypeMapping TypeName="IMPERIAModel.Supplier_sports_nutrition">
+              <MappingFragment StoreEntitySet="Supplier_sports_nutrition">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="senior_staffID" ColumnName="senior_staffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="IMPERIAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_sports_hall">
+            <EntityTypeMapping TypeName="IMPERIAModel.Type_sports_hall">
+              <MappingFragment StoreEntitySet="Type_sports_hall">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_sub">
+            <EntityTypeMapping TypeName="IMPERIAModel.Type_sub">
+              <MappingFragment StoreEntitySet="Type_sub">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

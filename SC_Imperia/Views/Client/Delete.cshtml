@@ -1,0 +1,31 @@
+﻿@model SC_Imperia.Models.Client
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Вы уверены, что хотите удалить этого человека?</h3>
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <input type="image" name="image" src="~/Content/Delete.png" width="32" />
+        </div>
+        <div>
+            <a href="@Url.Action("","Client")">
+                <img src="@Url.Content("~/Content/Back.png")" alt="Home" />
+            </a>
+        </div>
+    }
+
+
+</div>

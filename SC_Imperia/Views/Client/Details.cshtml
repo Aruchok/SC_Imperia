@@ -1,0 +1,32 @@
+﻿@model SC_Imperia.Models.Client
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 align="center">Delails</h2>
+<table align="center" class="table-bordered table-striped table-condensed">
+    <tr>
+        <th><p3 align="center">First name</p3></th>
+
+        <th><p3 align="center">Last name</p3></th>
+
+        <th><p3 align="center">Number phone</p3></th>
+
+        <th><p3 align="center">Type Sub </p3></th>
+
+        <th><p3 align="center">Last name staff</p3></th>
+
+    <tr>
+        <td align="center">@Model.fname</td>
+        <td align="center">@Model.lname</td>
+        <td align="center">@Model.phone</td>
+        <td align="center">@Model.Type_sub.type</td>
+        <td align="center">@Model.Senior_staff.lname</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("","Client")">
+    <img src="@Url.Content("~/Content/Back.png")" alt="Home" />
+</a>

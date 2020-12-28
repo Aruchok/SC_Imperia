@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище IMPERIAModelContainer" CdmEntityContainer="IMPERIA_DB">
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="IMPERIAModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="type_subID" ColumnName="type_subID" />
+          <ScalarProperty Name="type_sports_hallID" ColumnName="type_sports_hallID" />
+          <ScalarProperty Name="senior_staffID" ColumnName="senior_staffID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Position">
+      <EntityTypeMapping TypeName="IMPERIAModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="pos" ColumnName="pos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Senior_staff">
+      <EntityTypeMapping TypeName="IMPERIAModel.Senior_staff">
+        <MappingFragment StoreEntitySet="Senior_staff">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="positionID" ColumnName="positionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sports_equipment">
+      <EntityTypeMapping TypeName="IMPERIAModel.Sports_equipment">
+        <MappingFragment StoreEntitySet="Sports_equipment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="senior_staffID" ColumnName="senior_staffID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier_sports_nutrition">
+      <EntityTypeMapping TypeName="IMPERIAModel.Supplier_sports_nutrition">
+        <MappingFragment StoreEntitySet="Supplier_sports_nutrition">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="senior_staffID" ColumnName="senior_staffID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IMPERIAModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_sports_hall">
+      <EntityTypeMapping TypeName="IMPERIAModel.Type_sports_hall">
+        <MappingFragment StoreEntitySet="Type_sports_hall">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_sub">
+      <EntityTypeMapping TypeName="IMPERIAModel.Type_sub">
+        <MappingFragment StoreEntitySet="Type_sub">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

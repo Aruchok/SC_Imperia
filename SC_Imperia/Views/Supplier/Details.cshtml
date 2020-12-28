@@ -1,0 +1,29 @@
+﻿@model SC_Imperia.Models.Supplier_sports_nutrition
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 align="center">Delails</h2>
+<table align="center" class="table-bordered table-striped table-condensed">
+    <tr>
+        <th><p3 align="center">Quantity</p3></th>
+
+        <th><p3 align="center">Price</p3></th>
+
+        <th><p3 align="center">Model</p3></th>
+
+        <th><p3 align="center">Last name staff</p3></th>
+
+    <tr>
+        <td align="center">@Model.quantity</td>
+        <td align="center">@Model.price</td>
+        <td align="center">@Model.model</td>
+        <td align="center">@Model.Senior_staff.lname</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("","Supplier")">
+    <img src="@Url.Content("~/Content/Back.png")" alt="Home" />
+</a>
